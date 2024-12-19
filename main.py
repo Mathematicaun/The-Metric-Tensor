@@ -93,13 +93,27 @@ def simulator(a, b):
     color='#636efa', scale=1, scale_units='xy', width=7**-3)
 
     # You cun use this part if your computer does get laggy. However, this part computes and shows the metric tensor compounds in the axes.
-    '''ax.text(-13, 6.5, 'The Metric Tensor', color='white', size=16)
-    ax.text(-11.5, 5.7, r'$e_r$', color='#636efa', size=15)
-    ax.text(-9.8, 5.7, r'$e_{\theta}$', color='#636efa', size=15)
-    ax.text(-11, 5, r'$g_{\mu\nu} = \left( \begin{array}{cc} \cos(\theta) & -r\sin(\theta) \\ \sin(\theta) & r\cos(\theta) \end{array} \right)$', 
+    ax.text(-13, 6.5, 'Linear Transformation', color='white', size=16)
+    ax.text(9, 6.5, 'The Metric Tensor', color='white', size=16)
+    ax.text(-11, 5, r'$M = \left( \begin{array}{cc} \cos(\theta) & -r\sin(\theta) \\ \sin(\theta) & r\cos(\theta) \end{array} \right)$', 
         color='white', fontsize=14, ha='center', va='center')
-    ax.text(-11, 3, fr'$g_{{\mu\nu}} = \left( \begin{{array}}{{cc}} {np.cos(Functional(a, b).angle()):.1f} & {-Functional(a, b).R()*np.sin(Functional(a, b).angle()):.1f} \\ {np.sin(Functional(a, b).angle()):.1f} & {Functional(a, b).R()*np.cos(Functional(a, b).angle()):.1f} \end{{array}} \right)$', 
-        color='white', fontsize=17, ha='center', va='center')'''
+    ax.text(-11, 2, r'$M^{-1} = \left( \begin{array}{cc} \cos(\theta) & \sin(\theta) \\ -\frac{1}{r}\sin(\theta) & \frac{1}{r}\cos(\theta) \end{array} \right)$', 
+        color='white', fontsize=14, ha='center', va='center')
+
+    ax.text(-11, -1, fr'$M = \left( \begin{{array}}{{cc}} {np.cos(Functional(a, b).angle()):.2f} & {-Functional(a, b).R()*np.sin(Functional(a, b).angle()):.2f} \\ {np.sin(Functional(a, b).angle()):.2f} & {Functional(a, b).R()*np.cos(Functional(a, b).angle()):.2f} \end{{array}} \right)$', 
+        color='white', fontsize=17, ha='center', va='center')
+
+    ax.text(-11, -4, fr'$M^{{-1}} = \left( \begin{{array}}{{cc}} {np.cos(Functional(a, b).angle()):.2f} & {np.sin(Functional(a, b).angle()):.2f} \\ {-1/Functional(a, b).R()*np.sin(Functional(a, b).angle()):.2f} & {1/Functional(a, b).R()*np.cos(Functional(a, b).angle()):.2f} \end{{array}} \right)$', 
+        color='white', fontsize=17, ha='center', va='center')
+        
+    ax.text(11, 5, r'$g_{\mu\nu} = \left( \begin{array}{cc} 1 & 0 \\ 0 & R^2 \end{array} \right)$', 
+        color='white', fontsize=14, ha='center', va='center')
+    ax.text(11, 2, r'$g^{\mu\nu} = \left( \begin{array}{cc} 1 & 0 \\ 0 & \frac{{1}}{R^2} \end{array} \right)$', 
+        color='white', fontsize=14, ha='center', va='center')
+    ax.text(11, -1, fr'$g_{{\mu\nu}} = \left( \begin{{array}}{{cc}} 1 & 0 \\ 1 & {Functional(a, b).R()**2:.2f} \end{{array}} \right)$', 
+        color='white', fontsize=17, ha='center', va='center')
+    ax.text(11, -4, fr'$g^{{\mu\nu}} = \left( \begin{{array}}{{cc}} 1 & 0 \\ 1 & {1/Functional(a, b).R()**2:.2f} \end{{array}} \right)$', 
+        color='white', fontsize=17, ha='center', va='center')
 
     ax.grid(which='major', color='white', linewidth=.2)
     plt.draw()

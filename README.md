@@ -1,80 +1,66 @@
-# Polar Coordinates Transformation and Metric Tensor Simulation
+# Linear Transformation and Metric Tensor Simulation
 
-This project visualizes the transformation of vectors in polar coordinates, utilizing a metric tensor to transform vectors from the Cartesian basis $(e_x, e_y)$ to the polar basis $(e_r, e_\theta)$. The simulation computes the radius and angle of a point in the 2D plane and transforms vector components between these coordinate systems.
+This document describes the simulation of a linear transformation and its corresponding metric tensor in polar coordinates using a Python script.
 
-## Mathematical Framework
+## Overview
 
-### 1. **Polar Coordinates Transformation**
-Given a point in Cartesian coordinates $(a, b)$, its **radius** $r$ and **angle** $\theta$ in polar coordinates are defined as:
+The program simulates the transformation of vectors in a 2D Cartesian coordinate system to polar coordinates. It computes the metric tensor for the transformation and visualizes it. The transformation is represented using a linear combination of the radial and angular components in polar coordinates. The following aspects are discussed:
 
-$$
-r = \sqrt{a^2 + b^2}
-$$
+1. **Radius Function**: The function $R(a, b) = \sqrt{a^2 + b^2}$ represents the radius in polar coordinates.
+2. **Angle Function**: The angle function $\theta$ is computed using the arctangent function.
 
-$$
-\theta = \arctan(\frac{b}{a})
-$$
+### Metric Tensor
 
-where $\text{atan2}(b, a)$ is the 2-argument arctangent function that gives the angle $\theta$ of the point $(a, b)$ relative to the positive x-axis.
-
-### 2. **Metric Tensor**
-The **metric tensor** $g_{\mu\nu}$ is used to transform vectors from the Cartesian basis $(e_x, e_y)$ to the polar basis $(e_r, e_\theta)$. The general form of the metric tensor for polar coordinates is:
+The metric tensor is a mathematical object that defines how distances are measured in a curved space. For the transformation from Cartesian to polar coordinates, the metric tensor is given by the following matrix:
 
 $$
-g_{\mu\nu} = \begin{pmatrix} 
+M = \begin{pmatrix}
 \cos(\theta) & -r\sin(\theta) \\
 \sin(\theta) & r\cos(\theta)
 \end{pmatrix}
 $$
 
-This tensor maps derivatives in the Cartesian basis to derivatives in the polar basis. The individual components of the tensor are:
-
-- $g_{00} = \cos(\theta)$
-- $g_{01} = -r\sin(\theta)$
-- $g_{10} = \sin(\theta)$
-- $g_{11} = r\cos(\theta)$
-
-### 3. **Vector Derivatives**
-The code computes finite difference approximations of the derivatives of the radius and angle with respect to the Cartesian coordinates $a$ and $b$. These are used to visualize vector fields and their components in both the Cartesian and polar basis:
+The inverse of the metric tensor is:
 
 $$
-\frac{\partial r}{\partial a} \approx \frac{r(a+h, b) - r(a, b)}{h}
+M^{-1} = \begin{pmatrix}
+\cos(\theta) & \sin(\theta) \\
+-\frac{1}{r}\sin(\theta) & \frac{1}{r}\cos(\theta)
+\end{pmatrix}
 $$
 
-where $h$ is a small perturbation. The same concept applies for other derivatives, such as $\frac{\partial r}{\partial b}$.
+Where:
+- $r = \sqrt{a^2 + b^2}$ is the radial distance.
+- $\theta$ is the angle calculated as $\theta = \arctan(\frac{b}{a})$.
 
-### 4. **Transformation of Vectors**
-The yellow vectors in the plot represent transformed derivatives and are calculated using the metric tensor:
+### Components of the Metric Tensor
 
-$$
-\mathbf{V} = \begin{pmatrix} c_0 \\\ c_1 \end{pmatrix} \cdot \begin{pmatrix} g_{00} & g_{01} \\\ g_{10} & g_{11} \end{pmatrix} = \begin{pmatrix} c_0g_{00} + c_1g_{10} \\\ c_0g_{01} + c_1g_{11} \end{pmatrix}
-$$
-
-where $c_1$ and $c_2$ are the components of the vector in Cartesian coordinates, and the matrix multiplication transforms it to polar coordinates.
-
-### 5. **Simulating and Plotting**
-- **Circles** are plotted using parametric equations in polar coordinates:
+The metric tensor components are crucial for transforming vectors between Cartesian and polar coordinates. The components are calculated as:
 
 $$
-x = r \cos(2\pi t), \quad y = r \sin(2\pi t)
+g_{\mu\nu} = \begin{pmatrix}
+1 & 0 \\
+0 & r^2
+\end{pmatrix}
 $$
 
-- **Vector Field**: The simulation visualizes the vectors that represent derivatives with respect to $a$, $b$, $r$, and $\theta$ in both Cartesian and polar coordinate systems.
+The inverse metric tensor components are:
 
-## Code Overview
+$$
+g^{\mu\nu} = \begin{pmatrix}
+1 & 0 \\
+0 & \frac{1}{r^2}
+\end{pmatrix}
+$$
 
-The simulation is implemented using Python with the `matplotlib` library for plotting and `numpy` for numerical computations. The simulation updates dynamically based on the cursor position in the plot, computing and displaying vectors, circles, and metric tensor components.
+### Visualizing the Transformation
 
-## Setup and Requirements
+The Python script visualizes the transformation by displaying:
+- A scatter plot of points $(a, b)$.
+- The radial and angular components of the transformation.
+- The metric tensor components in both Cartesian and polar coordinate systems.
+- The vectors in both the Cartesian basis $(e_x, e_y)$ and polar basis $(e_r, e_\theta)$.
 
-- Python 3.x
-- `matplotlib`
-- `numpy`
-- LaTeX environment for rendering mathematical formulas in plots
+## Conclusion
 
-## Running the Code
-
-1. Install the required dependencies:
-
-```bash
-pip install matplotlib numpy
+This simulation helps to understand the transformation of vectors between different coordinate systems, particularly from Cartesian to polar coordinates, and how the metric tensor is involved in this transformation.

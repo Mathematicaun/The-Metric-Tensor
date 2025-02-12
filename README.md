@@ -14,18 +14,18 @@ The program simulates the transformation of vectors in a 2D Cartesian coordinate
 The metric tensor is a mathematical object that defines how distances are measured in a curved space. For the transformation from Cartesian to polar coordinates, the metric tensor is given by the following matrix:
 
 $$
-M = \begin{pmatrix}
-\cos(\theta) & -r\sin(\theta) \\
-\sin(\theta) & r\cos(\theta)
+M = r\begin{pmatrix}
+\cos(\theta) & -\sin(\theta) \\
+\sin(\theta) & \cos(\theta)
 \end{pmatrix}
 $$
 
 The inverse of the metric tensor is:
 
 $$
-M^{-1} = \begin{pmatrix}
+M^{-1} = \frac{1}{r}\begin{pmatrix}
 \cos(\theta) & \sin(\theta) \\
--\frac{1}{r}\sin(\theta) & \frac{1}{r}\cos(\theta)
+-\sin(\theta) & \cos(\theta)
 \end{pmatrix}
 $$
 
